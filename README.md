@@ -39,3 +39,7 @@ it's possible that the performance isn't great.
 
 It also assumes you have a valid SSH configuration for accessing the
 nodes with a user with sudo permissions.
+
+You may also think that using serverspec to test for the same types that
+Puppet also deals with isn't of any use. I'm not sure yet but I think
+it's an interesting experiment.
