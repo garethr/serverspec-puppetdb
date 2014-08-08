@@ -18,12 +18,13 @@ class PuppetdbServerspecGenerator
       RSpec.describe send(type, name) do
         case type
         when 'package'
-          it { should be_installed }
+          it { should be_installed } if item['parameters']['ensure'] == 'installed'
+          it { should_not be_installed } if item['parameters']['ensure'] == 'absent'
         when 'service'
-          it { should be_enabled }
-          it { should be_running }
+          it { should be_enabled } if item['parameters']['enable'] == true
+          it { should be_running } if item['parameters']['ensure'] == 'running'
         when 'user', 'group'
-          it { should exist }
+          it { should exist } if item['parameters']['ensure'] == 'present'
         end
       end
     end
